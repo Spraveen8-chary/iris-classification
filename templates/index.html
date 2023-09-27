@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Flask App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    body{
+        background-image: url('{{url_for("static" , filename = "images/background.jpg")}}');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    h1 {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            font-weight: 100;
+            font-size: 50px;
+    }
+    .result-card {
+        margin-top: 20px;
+    }
+    span {
+        font-family: 'Pacifico';
+        color: rgb(134, 47, 161);
+    }
+</style>
+</head>
+<body>
+    <h1>Iris Flower Classification</h1>
+    
+    <div class="container mt-5" style="width: 400px; height: 450px; margin-left: 275px;">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Measurements</h5>
+                <form method="POST">
+                    <label for="input1">Sepal Length (cm)</label>
+                    <input type="text" id="input1" name="input1" class="form-control"><br>
+                    
+                    <label for="input2">Sepal Width (cm)	</label>
+                    <input type="text" id="input2" name="input2" class="form-control"><br>
+                    
+                    <label for="input3">Petal Length (cm)</label>
+                    <input type="text" id="input3" name="input3" class="form-control"><br>
+                    
+                    <label for="input4">Petal Width (cm)</label>
+                    <input type="text" id="input4" name="input4" class="form-control"><br>
+                    
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    {% if result %}
+    <div class="container mt-5" style="width: 400px; height: 400px; margin-left: 800px;"  >
+        <div class="card result-card" style="margin-top: -479px;">
+            <img src="{{ url_for('static', filename='images/'+result_image) }}" class="card-img-top" alt="Result Image">
+            <div class="card-body">
+                <h3>Prediction : <span>{{ result }}</span> </h3>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
